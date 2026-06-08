@@ -33,5 +33,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# Tokenizer-gpt" 
+Redeploying (how to redeploy)
+
+- Auto-deploy: Push to the Git branch Vercel is linked to (e.g., `main`) — Vercel will automatically build and deploy on each push.
+- Manual redeploy: In the Vercel dashboard go to Project → Deployments → select a deployment → click **Redeploy**.
+- CLI deploy: `vercel login` then `vercel --prod` to trigger a production deployment from your local machine.
+
+Environment variables (Project → Settings → Environment Variables)
+
+Set the following for production:
+- `DATABASE_URL` — your PostgreSQL (Neon/Supabase) connection string
+- `NEXTAUTH_URL` — your app URL (e.g., `https://your-app.vercel.app`)
+- `NEXTAUTH_SECRET` — generated secret (`openssl rand -base64 32`)
+- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` — optional (for Google OAuth)
+
+Database migrations (production)
+
+- Recommended: run migrations in CI using `npx prisma migrate deploy` against `DATABASE_URL`.
+- For local testing use: `npx prisma migrate dev --name init`.
+
+See Next.js deployment docs for full details: https://nextjs.org/docs/app/building-your-application/deploying
+
+# Tokenizer-gpt
+
